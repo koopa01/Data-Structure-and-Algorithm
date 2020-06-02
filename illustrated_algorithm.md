@@ -681,5 +681,41 @@
         所有的图算法都可使用线性规划来实现。线性规划是一个宽泛得多的框架，图问题只是其中的一个子集。
     
     深度优先算法
+        遍历规则：不断地沿着树结构的顶点的深度方向遍历。顶点的深度方向是指它的邻接点方向。
+               A
+        B               C
+      D   E          F      G
+                    H
+        结果：ABDECFGH
+        ```
+        def depth_tree(tree_node)
+            if(tree_node is not None):
+                print(tree_node._data)
+                if tree_node._left is not None:
+                    return depth_tree(tree_node._left)
+                if tree_node._right is not None:
+                    return depth_tree(tree_node._right)
+        ```
+    广度优先算法：
+        遍历规则：
+            1）先访问完当前顶点的所有邻接点。(应该看得出广度的意思)
+            2）先访问顶点的邻接点先于后访问顶点的邻接点被访问。
+        结果：ABCDEFGH。
+        ```
+        def level_queue(root):
+            if root is None:
+                return
+        my_queue = []
+        node = root
+        my_queue.append(node)
+        while my_queue:
+            node = my_queue.pop(0)
+            print(node.elem)
+            if node.lchild is not None:
+                my_queue.append(node.lchild)
+            if node.rchild is not None:
+                my_queue.append(node.rchild)
+        ```
+
 
 
